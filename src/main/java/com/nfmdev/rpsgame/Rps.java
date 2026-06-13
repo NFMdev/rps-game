@@ -9,16 +9,20 @@ import com.nfmdev.rpsgame.cli.GameRunner;
 import com.nfmdev.rpsgame.cli.InputReader;
 import com.nfmdev.rpsgame.cli.MoveResolver;
 import com.nfmdev.rpsgame.cli.OutputWriter;
-import com.nfmdev.rpsgame.game.MachineMoveGenerator;
 import com.nfmdev.rpsgame.game.Rules;
+import com.nfmdev.rpsgame.game.machine_move_generator.DefaultMoveGenerator;
 
 public final class Rps {
     public static void main(String[] args) {
         OutputWriter writer = new OutputWriter(System.out);
+        OutputWriter errorWriter = new OutputWriter(System.err);
 
         try {
             Args parsedArgs = new ArgsResolver().parse(args);
-            if (parsedArgs.helpRequested()) {
+            if (parsedArgs.roundsHelpRequested()) {
+                writer.println(roundsUsage());
+                return;
+            } else if (parsedArgs.helpRequested()) {
                 writer.println(usage());
                 return;
             }
@@ -29,11 +33,13 @@ public final class Rps {
                 reader,
                 writer,
                 new Rules(),
-                new MachineMoveGenerator(new Random()),
+                new DefaultMoveGenerator(new Random()),
                 new MoveResolver()
             );
             runner.run(parsedArgs);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
+            errorWriter.println("Error: " + e.getMessage());
+            errorWriter.println("Run --help to see usage instructions");
         }
     }
 
@@ -54,6 +60,14 @@ public final class Rps {
 
                 If no number of rounds is specified, the game asks for manual setup.
                 If you press Enter without entering a value, game default is 3 rounds.
+                """;
+    }
+
+    private static String roundsUsage() {
+        return """
+                usage: --rounds [number of rounds]
+
+                Configures the number of rounds to play (must be greater than zero)
                 """;
     }
 }
