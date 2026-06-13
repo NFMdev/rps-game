@@ -71,6 +71,10 @@ mvn test
 - Argument parsing
 - Move parsing
 
+## Dependencies
+JUnit 6 is used as a test dependency.
+
+
 ## Project Structure
 ```bash
 src/
