@@ -31,10 +31,11 @@ public final class ArgsResolver {
             return Args.roundsHelp();
         } else if (isHelpArg(option) && isRoundsArg(value)) {
             return Args.help();
-        } else if (isHelpArg(option) && !isRoundsArg(value)) {
-            throw new IllegalArgumentException("Unknown argument: " + value);
-        } else if (isRoundsArg(option) && !isHelpArg(value)) {
-            throw new IllegalArgumentException("Unknown argument: " + value);
+        } else if (
+            isHelpArg(option) && !isRoundsArg(value) ||
+            isRoundsArg(option) && !isHelpArg(value)
+        ) {
+            throw new IllegalArgumentException("Invalid argument: " + value);
         } else {
             throw new IllegalArgumentException("Unknown arguments: " + option + " | " + value);
         }

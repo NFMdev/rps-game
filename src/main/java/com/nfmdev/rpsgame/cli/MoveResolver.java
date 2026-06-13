@@ -10,7 +10,7 @@ public final class MoveResolver {
             return Optional.empty();
         }
 
-        return switch (input) {
+        return switch (input.toLowerCase()) {
             case "r" -> Optional.of(Move.ROCK);
             case "p" -> Optional.of(Move.PAPER);
             case "s" -> Optional.of(Move.SCISSORS);

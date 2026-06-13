@@ -126,11 +126,11 @@ class ArgsResolverTest {
         return Stream.of(
             new Object[]{
                 new String[]{"--help", "test"},
-                "Unknown argument: test"
+                "Invalid argument: test"
             },
             new Object[]{
                 new String[]{"-h", "test"},
-                "Unknown argument: test"
+                "Invalid argument: test"
             },
             new Object[]{
                 new String[]{"--test", "--unknown"},
