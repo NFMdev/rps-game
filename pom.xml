@@ -13,6 +13,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.williamcallahan</groupId>
+            <artifactId>tui4j</artifactId>
+            <version>0.3.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit-version}</version>
