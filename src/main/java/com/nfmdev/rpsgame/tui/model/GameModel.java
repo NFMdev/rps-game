@@ -1,5 +1,7 @@
-package com.nfmdev.rpsgame.tui;
+package com.nfmdev.rpsgame.tui.model;
 
+import com.nfmdev.rpsgame.tui.View;
+import com.nfmdev.rpsgame.tui.keymap.GameKeyMap;
 import com.williamcallahan.tui4j.compat.bubbles.help.Help;
 import com.williamcallahan.tui4j.compat.bubbles.key.Binding;
 import com.williamcallahan.tui4j.compat.bubbletea.Command;
@@ -8,7 +10,7 @@ import com.williamcallahan.tui4j.compat.bubbletea.Message;
 import com.williamcallahan.tui4j.compat.bubbletea.Model;
 import com.williamcallahan.tui4j.compat.bubbletea.UpdateResult;
 
-public final class RpsModel implements Model {
+public final class GameModel implements Model {
     private static final int DEFAULT_TOTAL_ROUNDS = 3;
 
     private final View view;
@@ -18,10 +20,10 @@ public final class RpsModel implements Model {
     private int playerWins;
     private int machineWins;
 
-    public final RpsKeyMap keys = new RpsKeyMap();
+    public final GameKeyMap keys = new GameKeyMap();
     public final Help help = new Help();
 
-    public RpsModel() {
+    public GameModel() {
         this.view = new View();
         this.currentRound = 1;
         this.totalRounds = DEFAULT_TOTAL_ROUNDS;

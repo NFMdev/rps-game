@@ -1,30 +1,17 @@
 package com.nfmdev.rpsgame.tui;
 
+import com.nfmdev.rpsgame.tui.model.GameModel;
+import com.nfmdev.rpsgame.tui.model.HomeModel;
+import com.nfmdev.rpsgame.tui.screen.HomeScreen;
+
 public final class View {
-    public String render(RpsModel model) {
-        String mainScreen = """
-            ===============================================
-            ||              ROCK PAPER SCISSORS          ||
-            ===============================================
+    private final HomeScreen homeScreen = new HomeScreen();
 
-            Round %d of %d
+    public String renderHomeScreen(HomeModel model) {
+        return Styles.APP_STYLE.render(new String[]{homeScreen.render(model)});
+    }
 
-            Score
-            ——————————————————————————————————————————————
-            You:    %d
-            Rival:  %d
-
-            Choose your move
-            [r] Rock
-            [p] Paper
-            [s] Scissors
-        """.formatted(
-            model.getCurrentRound(),
-            model.getTotalRounds(),
-            model.getPlayerWins(),
-            model.getMachineWins()
-        );
-        String help = Styles.FOOTER_STYLE.render(model.help.render(model.keys));
-        return Styles.APP_STYLE.render(new String[]{mainScreen, help});
+    public String render(GameModel model) {
+        return Styles.APP_STYLE.render(new String[]{homeScreen.render(null)});
     }
 }

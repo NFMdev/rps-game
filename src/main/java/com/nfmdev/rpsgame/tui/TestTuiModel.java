@@ -1,5 +1,6 @@
 package com.nfmdev.rpsgame.tui;
 
+import com.nfmdev.rpsgame.tui.keymap.GameKeyMap;
 import com.williamcallahan.tui4j.compat.bubbles.key.Binding;
 import com.williamcallahan.tui4j.compat.bubbletea.Command;
 import com.williamcallahan.tui4j.compat.bubbletea.KeyPressMessage;
@@ -8,7 +9,7 @@ import com.williamcallahan.tui4j.compat.bubbletea.Model;
 import com.williamcallahan.tui4j.compat.bubbletea.UpdateResult;
 
 public final class TestTuiModel implements Model {
-    private final RpsKeyMap keyMap = new RpsKeyMap();
+    private final GameKeyMap keyMap = new GameKeyMap();
 
     @Override
     public Command init() {
