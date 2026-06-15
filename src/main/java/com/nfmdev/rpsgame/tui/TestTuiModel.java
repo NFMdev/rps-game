@@ -8,7 +8,7 @@ import com.williamcallahan.tui4j.compat.bubbletea.Model;
 import com.williamcallahan.tui4j.compat.bubbletea.UpdateResult;
 
 public final class TestTuiModel implements Model {
-    private final KeyMap keyMap = KeyMap.defaultKeyMap();
+    private final RpsKeyMap keyMap = new RpsKeyMap();
 
     @Override
     public Command init() {
@@ -18,7 +18,7 @@ public final class TestTuiModel implements Model {
     @Override
     public UpdateResult<? extends Model> update(Message msg) {
         if (msg instanceof KeyPressMessage keyPressMessage) {
-            if (Binding.matches(keyPressMessage, keyMap.quit())) {
+            if (Binding.matches(keyPressMessage, keyMap.quitBinding)) {
                 return UpdateResult.from(this, Command.quit());
             }
         }
