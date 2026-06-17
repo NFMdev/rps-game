@@ -1,11 +1,14 @@
 package com.nfmdev.rpsgame.tui.screen;
 
+import com.nfmdev.rpsgame.game.Move;
+import com.nfmdev.rpsgame.tui.MoveAscii;
 import com.nfmdev.rpsgame.tui.Styles;
 import com.nfmdev.rpsgame.tui.keymap.GameKeyMap;
 import com.nfmdev.rpsgame.tui.model.GameModel;
 
 public final class GameScreen {
     public final GameKeyMap keys = new GameKeyMap();
+    public final MoveAscii moveAscii = new MoveAscii();
 
     public String render(GameModel model) {
         String header = "Round %d / %d — Player Score %d | Rival Score %d".formatted(
@@ -15,6 +18,6 @@ public final class GameScreen {
             model.getScore().getMachineScore()
         );
 
-        return Styles.APP_STYLE.render(header);
+        return Styles.APP_STYLE.render(header, "\n", moveAscii.renderMoveAscii(Move.ROCK));
     }
 }

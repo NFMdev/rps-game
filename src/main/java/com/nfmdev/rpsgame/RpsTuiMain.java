@@ -37,10 +37,10 @@ public final class RpsTuiMain {
     private static void run(Args args) {
         Objects.requireNonNull(args, "Arguments cannot be null");
 
-        //int rounds = getNumberOfRounds(args);
+        int rounds = getNumberOfRounds(args);
         Rules rules = new Rules();
         DefaultMoveGenerator generator = new DefaultMoveGenerator(new Random());
-        GameConfig config = new GameConfig(3);
+        GameConfig config = new GameConfig(rounds);
 
         new Program(new GameModel(rules, generator, config)).withAltScreen().run();
     }
@@ -48,7 +48,8 @@ public final class RpsTuiMain {
     private static int getNumberOfRounds(Args args) {
         Optional<Integer> rounds = args.getRounds();
         if (rounds.isPresent()) return rounds.get();
-        throw new IllegalArgumentException("Rounds cannot be null");
+        return 3;
+        //throw new IllegalArgumentException("Rounds cannot be null");
     }
 
     private static String usage() {
